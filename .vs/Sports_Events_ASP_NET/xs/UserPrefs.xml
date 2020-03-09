@@ -1,0 +1,43 @@
+﻿<Properties StartupConfiguration="{61A05380-0134-4D7F-B2B4-2A8B6D9E5D68}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sports_Events_ASP_NET/Controllers/EventController.cs">
+    <Files>
+      <File FileName="Sports_Events_ASP_NET/Models/ApplicationDbContext.cs" Line="38" Column="22" />
+      <File FileName="Sports_Events_ASP_NET/Models/Event.cs" Line="1" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Models/EventRepository.cs" Line="17" Column="6" />
+      <File FileName="Sports_Events_ASP_NET/Models/IEventRepository.cs" Line="1" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Controllers/EventController.cs" Line="6" Column="27" />
+      <File FileName="Sports_Events_ASP_NET/Views/Shared/_Layout.cshtml" Line="46" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Views/Shared/List.cshtml" Line="8" Column="2" />
+      <File FileName="Sports_Events_ASP_NET/Program.cs" Line="25" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Startup.cs" Line="45" Column="37" />
+      <File FileName="Sports_Events_ASP_NET/Sports_Events_ASP_NET.csproj" Line="25" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Views/_ViewStart.cshtml" Line="1" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Views/_ViewImports.cshtml" Line="1" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Views/Shared/HomePage.cshtml" Line="2" Column="10" />
+      <File FileName="Sports_Events_ASP_NET/Controllers/HomeController.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Option id="ShowAllFiles" value="True" />
+          <Node name="Sports_Events_ASP_NET" expanded="True">
+            <Node name="Sports_Events_ASP_NET" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="EventController.cs" selected="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="Views" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Sports__Events__ASP__NET PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>
