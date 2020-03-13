@@ -167,3 +167,8 @@
         top: 21px;
         left: 8px;
     }
+
+    .custom-title,
+    .custom-title:hover {
+        color: inherit;
+    }

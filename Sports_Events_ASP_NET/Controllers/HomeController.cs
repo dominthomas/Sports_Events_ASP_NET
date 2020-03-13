@@ -8,9 +8,8 @@ namespace Sports_Events_ASP_NET.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Home() => View();
+
+        public IActionResult Event() => View();
     }
 }

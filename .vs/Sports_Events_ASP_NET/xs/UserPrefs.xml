@@ -1,20 +1,26 @@
 ﻿<Properties StartupConfiguration="{61A05380-0134-4D7F-B2B4-2A8B6D9E5D68}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Sports_Events_ASP_NET/Controllers/EventController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sports_Events_ASP_NET/Views/Home/Home.cshtml">
     <Files>
-      <File FileName="Sports_Events_ASP_NET/Models/ApplicationDbContext.cs" Line="38" Column="22" />
-      <File FileName="Sports_Events_ASP_NET/Models/Event.cs" Line="1" Column="1" />
-      <File FileName="Sports_Events_ASP_NET/Models/EventRepository.cs" Line="17" Column="6" />
-      <File FileName="Sports_Events_ASP_NET/Models/IEventRepository.cs" Line="1" Column="1" />
-      <File FileName="Sports_Events_ASP_NET/Controllers/EventController.cs" Line="6" Column="27" />
-      <File FileName="Sports_Events_ASP_NET/Views/Shared/_Layout.cshtml" Line="46" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Models/ApplicationDbContext.cs" Line="29" Column="56" />
+      <File FileName="Sports_Events_ASP_NET/Models/Event.cs" Line="19" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Models/EventRepository.cs" Line="26" Column="43" />
+      <File FileName="Sports_Events_ASP_NET/Models/IEventRepository.cs" Line="11" Column="27" />
+      <File FileName="Sports_Events_ASP_NET/Controllers/EventController.cs" Line="32" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Views/Shared/_Layout.cshtml" Line="60" Column="8" />
       <File FileName="Sports_Events_ASP_NET/Views/Shared/List.cshtml" Line="8" Column="2" />
       <File FileName="Sports_Events_ASP_NET/Program.cs" Line="25" Column="1" />
-      <File FileName="Sports_Events_ASP_NET/Startup.cs" Line="45" Column="37" />
-      <File FileName="Sports_Events_ASP_NET/Sports_Events_ASP_NET.csproj" Line="25" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Startup.cs" Line="50" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Sports_Events_ASP_NET.csproj" Line="31" Column="1" />
       <File FileName="Sports_Events_ASP_NET/Views/_ViewStart.cshtml" Line="1" Column="1" />
       <File FileName="Sports_Events_ASP_NET/Views/_ViewImports.cshtml" Line="1" Column="1" />
-      <File FileName="Sports_Events_ASP_NET/Views/Shared/HomePage.cshtml" Line="2" Column="10" />
-      <File FileName="Sports_Events_ASP_NET/Controllers/HomeController.cs" Line="1" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Views/Shared/HomePage.cshtml" Line="11" Column="15" />
+      <File FileName="Sports_Events_ASP_NET/Controllers/HomeController.cs" Line="16" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/wwwroot/lib/bootstrap/css/Custom.css" Line="174" Column="6" />
+      <File FileName="Sports_Events_ASP_NET/Controllers/MemberController.cs" Line="11" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Models/User.cs" Line="29" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Models/Address.cs" Line="14" Column="26" />
+      <File FileName="Sports_Events_ASP_NET/Models/Administrator.cs" Line="6" Column="38" />
+      <File FileName="Sports_Events_ASP_NET/Models/Organisation.cs" Line="8" Column="39" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -22,11 +28,24 @@
           <Option id="ShowAllFiles" value="True" />
           <Node name="Sports_Events_ASP_NET" expanded="True">
             <Node name="Sports_Events_ASP_NET" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="EventController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Views" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Administration" expanded="True" />
+                <Node name="Events" expanded="True" />
+                <Node name="Home" expanded="True">
+                  <Node name="Home.cshtml" selected="True" />
+                </Node>
+                <Node name="Shared" expanded="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True">
+                <Node name="lib" expanded="True">
+                  <Node name="bootstrap" expanded="True">
+                    <Node name="css" expanded="True" />
+                  </Node>
+                </Node>
+              </Node>
             </Node>
           </Node>
         </State>

@@ -25,11 +25,10 @@ namespace Sports_Events_ASP_NET
         {
             SqliteConnectionStringBuilder dbStrBuilder = new SqliteConnectionStringBuilder();
             dbStrBuilder.DataSource = "./sports_events_sqlite_db.db";
-            //SqliteConnection dbConnection = new SqliteConnection(dbStrBuilder.ConnectionString);
 
             services.AddDbContext<ApplicationDbContext>(option =>
             option.UseSqlite(dbStrBuilder.ConnectionString));
-            services.AddTransient<IEventRepository, EventRepository>();
+            services.AddTransient<IRepository, Repository>();
             services.AddMvc();
         }
 
@@ -43,7 +42,7 @@ namespace Sports_Events_ASP_NET
 
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=HomePage}/{id?}");
+                    template: "{controller=Home}/{action=Home}/{id?}");
             });
         }
     }

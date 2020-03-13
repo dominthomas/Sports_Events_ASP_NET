@@ -8,7 +8,15 @@ namespace SportsEvents.Models
     public class Event
     {
         public int EventID { get; set; }
-        public string Name { get; set; }
-        public string Price { get; set; }
+
+        public string Title { get; set; }
+
+        public int AddressID { get; set; }
+
+        public string Category { get; set; }
+
+        public int Price { get; set; }
+
+        public string Description { get; set; }
     }
 }
