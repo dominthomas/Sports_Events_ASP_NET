@@ -1,26 +1,28 @@
 ﻿<Properties StartupConfiguration="{61A05380-0134-4D7F-B2B4-2A8B6D9E5D68}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Sports_Events_ASP_NET/Views/Home/Home.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Sports_Events_ASP_NET/Controllers/EventsController.cs">
     <Files>
-      <File FileName="Sports_Events_ASP_NET/Models/ApplicationDbContext.cs" Line="29" Column="56" />
-      <File FileName="Sports_Events_ASP_NET/Models/Event.cs" Line="19" Column="1" />
-      <File FileName="Sports_Events_ASP_NET/Models/EventRepository.cs" Line="26" Column="43" />
-      <File FileName="Sports_Events_ASP_NET/Models/IEventRepository.cs" Line="11" Column="27" />
-      <File FileName="Sports_Events_ASP_NET/Controllers/EventController.cs" Line="32" Column="1" />
-      <File FileName="Sports_Events_ASP_NET/Views/Shared/_Layout.cshtml" Line="60" Column="8" />
-      <File FileName="Sports_Events_ASP_NET/Views/Shared/List.cshtml" Line="8" Column="2" />
-      <File FileName="Sports_Events_ASP_NET/Program.cs" Line="25" Column="1" />
-      <File FileName="Sports_Events_ASP_NET/Startup.cs" Line="50" Column="1" />
-      <File FileName="Sports_Events_ASP_NET/Sports_Events_ASP_NET.csproj" Line="31" Column="1" />
-      <File FileName="Sports_Events_ASP_NET/Views/_ViewStart.cshtml" Line="1" Column="1" />
-      <File FileName="Sports_Events_ASP_NET/Views/_ViewImports.cshtml" Line="1" Column="1" />
-      <File FileName="Sports_Events_ASP_NET/Views/Shared/HomePage.cshtml" Line="11" Column="15" />
-      <File FileName="Sports_Events_ASP_NET/Controllers/HomeController.cs" Line="16" Column="1" />
-      <File FileName="Sports_Events_ASP_NET/wwwroot/lib/bootstrap/css/Custom.css" Line="174" Column="6" />
-      <File FileName="Sports_Events_ASP_NET/Controllers/MemberController.cs" Line="11" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Controllers/AdministratorController.cs" Line="11" Column="76" />
+      <File FileName="Sports_Events_ASP_NET/Models/IRepository.cs" Line="7" Column="39" />
+      <File FileName="Sports_Events_ASP_NET/Models/Repository.cs" Line="7" Column="11" />
       <File FileName="Sports_Events_ASP_NET/Models/User.cs" Line="29" Column="1" />
-      <File FileName="Sports_Events_ASP_NET/Models/Address.cs" Line="14" Column="26" />
-      <File FileName="Sports_Events_ASP_NET/Models/Administrator.cs" Line="6" Column="38" />
-      <File FileName="Sports_Events_ASP_NET/Models/Organisation.cs" Line="8" Column="39" />
+      <File FileName="Sports_Events_ASP_NET/Views/Administrator/Administrator.cshtml" Line="5" Column="19" />
+      <File FileName="Sports_Events_ASP_NET/Controllers/EventsController.cs" Line="15" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Controllers/HomeController.cs" Line="7" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Models/Administrator.cs" Line="2" Column="11" />
+      <File FileName="Sports_Events_ASP_NET/Models/Address.cs" Line="2" Column="11" />
+      <File FileName="Sports_Events_ASP_NET/Models/ApplicationDbContext.cs" Line="67" Column="57" />
+      <File FileName="Sports_Events_ASP_NET/Models/Event.cs" Line="6" Column="39" />
+      <File FileName="Sports_Events_ASP_NET/Models/Organisation.cs" Line="1" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Views/Events/Events.cshtml" Line="2" Column="23" />
+      <File FileName="Sports_Events_ASP_NET/Views/Shared/_Layout.cshtml" Line="14" Column="7" />
+      <File FileName="Sports_Events_ASP_NET/Program.cs" Line="1" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/sports_events_sqlite_db.db" />
+      <File FileName="Sports_Events_ASP_NET/Startup.cs" Line="28" Column="1" />
+      <File FileName="Sports_Events_ASP_NET/Views/Home/Home.cshtml" Line="28" Column="38" />
+      <File FileName="Sports_Events_ASP_NET/Views/_ViewImports.cshtml" Line="1" Column="36" />
+      <File FileName="Sports_Events_ASP_NET/Views/_ViewStart.cshtml" Line="3" Column="2" />
+      <File FileName="Sports_Events_ASP_NET/Views/AboutUs/AboutUs.cshtml" Line="3" Column="66" />
+      <File FileName="Sports_Events_ASP_NET/Controllers/AboutUsController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -28,15 +30,16 @@
           <Option id="ShowAllFiles" value="True" />
           <Node name="Sports_Events_ASP_NET" expanded="True">
             <Node name="Sports_Events_ASP_NET" expanded="True">
-              <Node name="Controllers" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="EventsController.cs" selected="True" />
+              </Node>
               <Node name="Models" expanded="True" />
               <Node name="Properties" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="Administration" expanded="True" />
+                <Node name="AboutUs" expanded="True" />
+                <Node name="Administrator" expanded="True" />
                 <Node name="Events" expanded="True" />
-                <Node name="Home" expanded="True">
-                  <Node name="Home.cshtml" selected="True" />
-                </Node>
+                <Node name="Home" expanded="True" />
                 <Node name="Shared" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">

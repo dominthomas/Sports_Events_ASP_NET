@@ -23,6 +23,7 @@
 /Users/Domin/Projects/Sports_Events_ASP_NET/Sports_Events_ASP_NET/obj/Debug/netcoreapp2.1/Sports_Events_ASP_NET.dll
 /Users/Domin/Projects/Sports_Events_ASP_NET/Sports_Events_ASP_NET/obj/Debug/netcoreapp2.1/Sports_Events_ASP_NET.pdb
 /Users/Domin/Projects/Sports_Events_ASP_NET/Sports_Events_ASP_NET/obj/Debug/netcoreapp2.1/Sports_Events_ASP_NET.csproj.CopyComplete
-/Users/Domin/Projects/Sports_Events_ASP_NET/Sports_Events_ASP_NET/obj/Debug/netcoreapp2.1/Razor/Views/Administration/Administrator.cshtml.g.cs
 /Users/Domin/Projects/Sports_Events_ASP_NET/Sports_Events_ASP_NET/obj/Debug/netcoreapp2.1/Razor/Views/Home/Home.cshtml.g.cs
 /Users/Domin/Projects/Sports_Events_ASP_NET/Sports_Events_ASP_NET/obj/Debug/netcoreapp2.1/Razor/Views/Events/Events.cshtml.g.cs
+/Users/Domin/Projects/Sports_Events_ASP_NET/Sports_Events_ASP_NET/obj/Debug/netcoreapp2.1/Razor/Views/Administrator/Administrator.cshtml.g.cs
+/Users/Domin/Projects/Sports_Events_ASP_NET/Sports_Events_ASP_NET/obj/Debug/netcoreapp2.1/Razor/Views/AboutUs/AboutUs.cshtml.g.cs

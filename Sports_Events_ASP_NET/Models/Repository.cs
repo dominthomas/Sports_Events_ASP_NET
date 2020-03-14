@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Sports_Events_ASP_NET.Models;
 
-namespace SportsEvents.Models
+namespace Sports_Events_ASP_NET.Models
 {
     public class Repository : IRepository
     {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SportsEvents.Models;
+using Sports_Events_ASP_NET.Models;
 
-namespace SportsEvents.Controllers
+namespace Sports_Events_ASP_NET.Controllers
 {
     public class EventsController : Controller
     {

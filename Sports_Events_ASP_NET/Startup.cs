@@ -9,7 +9,7 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SportsEvents.Models;
+using Sports_Events_ASP_NET.Models;
 
 namespace Sports_Events_ASP_NET
 {

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace SportsEvents.Models
+namespace Sports_Events_ASP_NET.Models
 {
     public class ApplicationDbContext : DbContext
     {
@@ -37,7 +37,7 @@ namespace SportsEvents.Models
                 entity.Property(e => e.Description);
             });
 
-            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(u => u.UserID);
@@ -53,7 +53,7 @@ namespace SportsEvents.Models
                 entity.Property(u => u.Skills);
             });
 
-            modelBuilder.Entity<Address>().ToTable("Addresses");
+            modelBuilder.Entity<Address>().ToTable("Address");
             modelBuilder.Entity<Address>(entity =>
             {
                 entity.HasKey(a => a.AddressID);
@@ -63,13 +63,13 @@ namespace SportsEvents.Models
                 entity.Property(a => a.Country);
             });
 
-            modelBuilder.Entity<Administrator>().ToTable("Administrators");
+            modelBuilder.Entity<Administrator>().ToTable("Administrator");
             modelBuilder.Entity<Administrator>(entity =>
             {
                 entity.HasKey(a => a.UserID);
             });
 
-            modelBuilder.Entity<Organisation>().ToTable("Organisations");
+            modelBuilder.Entity<Organisation>().ToTable("Organisation");
             modelBuilder.Entity<Organisation>(entity =>
             {
                 entity.HasKey(o => o.OrgID);

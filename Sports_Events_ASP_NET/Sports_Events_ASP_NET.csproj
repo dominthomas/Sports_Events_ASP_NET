@@ -8,7 +8,8 @@
     <Folder Include="wwwroot\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Events\" />
-    <Folder Include="Views\Administration\" />
+    <Folder Include="Views\Administrator\" />
+    <Folder Include="Views\AboutUs\" />
   </ItemGroup>
 
   <ItemGroup>
