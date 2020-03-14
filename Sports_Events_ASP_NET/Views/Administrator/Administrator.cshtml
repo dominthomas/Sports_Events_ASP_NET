@@ -1,7 +1,20 @@
-﻿@model IEnumerable<Administrator>
-@foreach (var a in Model)
-{
-    <div>
-        <h3>@a.UserID</h3>
-    </div>
-}
+﻿<div class="card-group">
+
+    @model IEnumerable<User>
+    @{ int count = 0;}
+    @foreach (var u in Model)
+    {
+        <div class="card">
+            <img class="card-img-top" src="/images/users/@u.getProfileImageString()" onerror="standby(@count)">
+            <div class="card-body">
+                <h5 class="card-title">@u.Name</h5>
+                <h6>Bio:</h6><br />
+                <p class="card-text">@u.Bio</p>
+                <h6>Skills:</h6><br />
+                <p class="card-text">@u.Skills</p>
+            </div>
+        </div>
+        count = count + 1;
+    }
+
+</div>

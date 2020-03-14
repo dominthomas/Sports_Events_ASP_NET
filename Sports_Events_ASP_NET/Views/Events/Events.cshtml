@@ -1,8 +1,22 @@
-﻿@model IEnumerable<Event>
-@foreach (var e in Model)
-{
-    <div>
-        <h3>@e.Title</h3>
-        <h4>@e.Price</h4>
-    </div>
-}
+﻿<div class="card-group">
+
+    @model IRepository
+    @{int count = 0; IQueryable <Address> Addresses = Model.Addresses; Address address;}
+    @foreach (Event e in Model.Events)
+    {
+        address = Addresses.Where(addr => e.AddressID == addr.AddressID).Single();
+        <img class="card-img-top" id="@count" src="/images/users/@e.getCategoryImageString()" onerror="standby(@count)">
+        <div class="card-body">
+            <h5 class="card-title">@e.Title</h5>
+            <h6>Price</h6>
+            <p class="card-text">£@e.Price</p>
+            <h6>Description</h6>
+            <p class="card-text">@e.Description</p>
+            <h6>Location</h6>
+            <p class="card-text">@address.FirstLine <br />@address.Town <br /> @address.PostCode <br /> @address.Country</p>
+            <br />
+        </div>
+        <br />
+        count = count + 1;
+    }
+</div>

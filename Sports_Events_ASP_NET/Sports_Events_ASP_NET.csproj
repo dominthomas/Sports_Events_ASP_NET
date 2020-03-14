@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Events\" />
     <Folder Include="Views\Administrator\" />
@@ -23,9 +22,5 @@
     
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="wwwroot\EventsList.cshtml" />
   </ItemGroup>
 </Project>

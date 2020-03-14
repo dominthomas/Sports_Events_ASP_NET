@@ -1,0 +1,23 @@
+﻿<div class="card-group">
+
+    @model IEnumerable<User>
+    @{int count = 0;}
+    @foreach (User u in Model)
+    {
+        <img class="card-img-top" id="@count" src="/images/users/@u.getProfileImageString()" onerror="standby(@count)">
+        <div class="card-body">
+            <h5 class="card-title">@u.Name</h5>
+            <h6>Bio</h6>
+            <p class="card-text">@u.Bio</p>
+            <h6>Skills</h6>
+            <p class="card-text">@u.Skills</p>
+            <h6>Location</h6>
+            <p class="card-text">@u.WorkLocation</p>
+            <br />
+            <h6>Contact</h6>
+            <p class="card-text">Tel: @u.Phone<br />email: @u.Email</p>
+        </div>
+        <br />
+        count = count + 1;
+    }
+</div>
