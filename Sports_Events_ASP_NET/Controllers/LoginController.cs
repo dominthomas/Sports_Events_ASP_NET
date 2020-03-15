@@ -10,6 +10,15 @@ namespace Sports_Events_ASP_NET.Controllers
 
         public LoginController(IRepository repo) => repository = repo;
 
-        public ViewResult Login() => View();
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult Verify(User user)
+        {
+            return View();
+        }
     }
 }

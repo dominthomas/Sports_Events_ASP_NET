@@ -13,7 +13,17 @@ namespace Sports_Events_ASP_NET.Controllers
 
         public AdministratorController(IRepository repo) => repository = repo;
 
-        public ViewResult Administrator() => View(getAllAdminUserInfo());
+        public ViewResult Administrator()
+        {
+            string bob = "bob";
+            HttpContext.Current.Session["bob"] = bob;
+
+            if (HttpContext.Session["login_user"] == null)
+            {
+                return View("Login", User);
+            }
+            return View(getAllAdminUserInfo());
+        }
 
         private IQueryable<User> getAllAdminUserInfo()
         {
