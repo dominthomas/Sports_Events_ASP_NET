@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sports_Events_ASP_NET.Models;
 
@@ -8,11 +11,21 @@ namespace Sports_Events_ASP_NET.Controllers
     {
         private IRepository repository;
 
-        public ViewResult Administrator() => View(repository.Administrators);
+        public AdministratorController(IRepository repo) => repository = repo;
 
-        public AdministratorController(IRepository repo)
+        public ViewResult Administrator() => View(getAllAdminUserInfo());
+
+        private IQueryable<User> getAllAdminUserInfo()
         {
-            repository = repo;
+
+            IQueryable<Administrator> Admins = repository.Administrators;
+            List<int> AdminIDs = Admins.Select(user => user.UserID).ToList();
+
+            IQueryable<User> AllUsers = repository.Users;
+
+            IQueryable<User> AdminUsers = AllUsers.Where(user => AdminIDs.Contains(user.UserID));
+
+            return AdminUsers;
         }
     }
 }

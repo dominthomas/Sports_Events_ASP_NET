@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+using System;
+using System.Text.RegularExpressions;
+
 namespace Sports_Events_ASP_NET.Models
 {
     public class User
@@ -24,5 +27,29 @@ namespace Sports_Events_ASP_NET.Models
         public string Bio { get; set; }
 
         public string Skills { get; set; }
+
+        private readonly string Pattern = @"(\w*) (\w*)";
+
+        private readonly string EmptyJPG = "empty.jpg"; // This empty image might not be in the directory, and that's when the JS function will take over.
+
+        public string getProfileImageString()
+        {
+            string Lower = this.Name.ToLower().Trim();
+
+            Match m = Regex.Match(Lower, Pattern);
+
+            string ProfImgStr;
+
+            ProfImgStr = m.Groups[1] + "_" + m.Groups[2] + ".jpg"; // This assumes you have a first and last name.
+
+            string ReturnStr = EmptyJPG;
+
+            if (ProfImgStr != null && !ProfImgStr.Equals(""))
+            {
+                ReturnStr = ProfImgStr;
+            }
+
+            return ReturnStr;
+        }
     }
 }

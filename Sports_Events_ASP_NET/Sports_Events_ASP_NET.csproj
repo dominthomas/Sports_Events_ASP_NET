@@ -10,6 +10,8 @@
     <Folder Include="Views\Events\" />
     <Folder Include="Views\Administrator\" />
     <Folder Include="Views\AboutUs\" />
+    <Folder Include="Views\Members\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
 
   <ItemGroup>
