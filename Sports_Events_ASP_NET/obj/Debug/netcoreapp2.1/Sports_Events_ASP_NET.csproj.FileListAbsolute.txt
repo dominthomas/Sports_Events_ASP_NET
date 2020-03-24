@@ -28,3 +28,5 @@
 /Users/Domin/Projects/Sports_Events_ASP_NET/Sports_Events_ASP_NET/obj/Debug/netcoreapp2.1/Razor/Views/Administrator/Administrator.cshtml.g.cs
 /Users/Domin/Projects/Sports_Events_ASP_NET/Sports_Events_ASP_NET/obj/Debug/netcoreapp2.1/Razor/Views/AboutUs/AboutUs.cshtml.g.cs
 /Users/Domin/Projects/Sports_Events_ASP_NET/Sports_Events_ASP_NET/obj/Debug/netcoreapp2.1/Razor/Views/Members/Members.cshtml.g.cs
+/Users/Domin/Projects/Sports_Events_ASP_NET/Sports_Events_ASP_NET/obj/Debug/netcoreapp2.1/Razor/Views/Administrator/Login.cshtml.g.cs
+/Users/Domin/Projects/Sports_Events_ASP_NET/Sports_Events_ASP_NET/obj/Debug/netcoreapp2.1/Razor/Views/Login/Login.cshtml.g.cs

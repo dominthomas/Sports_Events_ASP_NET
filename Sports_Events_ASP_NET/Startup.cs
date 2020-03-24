@@ -26,6 +26,14 @@ namespace Sports_Events_ASP_NET
             SqliteConnectionStringBuilder dbStrBuilder = new SqliteConnectionStringBuilder();
             dbStrBuilder.DataSource = "./sports_events_sqlite_db.db";
 
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddDbContext<ApplicationDbContext>(option =>
             option.UseSqlite(dbStrBuilder.ConnectionString));
             services.AddTransient<IRepository, Repository>();
@@ -38,6 +46,7 @@ namespace Sports_Events_ASP_NET
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseMvc(routes => {
 
                 routes.MapRoute(
