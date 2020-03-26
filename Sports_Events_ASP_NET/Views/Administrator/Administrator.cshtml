@@ -1,4 +1,8 @@
-﻿<div class="card-group">
+﻿<div class="text-right">
+    <button type="button" class="btn btn-danger pull-right" onclick="location.href='@Url.Action("logout", "Administrator")'">Log out</button>
+</div>
+
+<div class="card-group">
 
     @model IEnumerable<User>
     @{ int count = 0;}

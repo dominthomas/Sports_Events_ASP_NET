@@ -6,6 +6,7 @@ namespace Sports_Events_ASP_NET.Controllers
 {
     public class LoginController : Controller
     {
+        /*
         private IRepository repository;
 
         public LoginController(IRepository repo) => repository = repo;
@@ -19,6 +20,6 @@ namespace Sports_Events_ASP_NET.Controllers
         public ActionResult Verify(User user)
         {
             return View();
-        }
+        } */
     }
 }

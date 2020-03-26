@@ -45,6 +45,12 @@ namespace Sports_Events_ASP_NET.Controllers
             return View(getAllAdminUserInfo());
         }
 
+        public ViewResult logout()
+        {
+            HttpContext.Session.Remove(loginID);
+            return View("Login");
+        }
+
         private IQueryable<User> getAllAdminUserInfo()
         {
             List<int> AdminIDs = getAdminIDs();
