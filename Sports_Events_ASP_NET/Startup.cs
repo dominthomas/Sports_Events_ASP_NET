@@ -37,6 +37,10 @@ namespace Sports_Events_ASP_NET
             services.AddDbContext<ApplicationDbContext>(option =>
             option.UseSqlite(dbStrBuilder.ConnectionString));
             services.AddTransient<IRepository, Repository>();
+            services.AddTransient<IAddressRepository, AddressRepository>();
+            services.AddTransient<IAdministratorRepository, AdministratorRepository>();
+            services.AddTransient<IEventRepository, EventRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddMvc();
         }
 

@@ -1,5 +1,12 @@
-﻿<div class="text-right">
-    <button type="button" class="btn btn-danger pull-right" onclick="location.href='@Url.Action("logout", "Administrator")'">Log out</button>
+﻿<div class="container">
+    <div class="row">
+        <div class="col-sm text-left">
+            <button type="button" class="btn btn-success pull-left" onclick="location.href='@Url.Action("AddUser", "Administrator")'">Add User</button>
+        </div>
+        <div class="col-sm text-right">
+            <button type="button" class="btn btn-danger pull-right" onclick="location.href='@Url.Action("Logout", "Administrator")'">Log out</button>
+        </div>
+    </div>
 </div>
 
 <div class="card-group">
@@ -8,17 +15,67 @@
     @{ int count = 0;}
     @foreach (var u in Model)
     {
+        string IsUserAdmin = u.GetUserAdmin() ? "checked" : "";
         <div class="card">
-            <img class="card-img-top" src="/images/users/@u.getProfileImageString()" onerror="standby(@count)">
+            <img class="card-img-top" id="@count" src="/images/users/@u.getProfileImageString()" onerror="standby(@count)">
             <div class="card-body">
-                <h5 class="card-title">@u.Name</h5>
-                <h6>Bio:</h6>
-                <p class="card-text">@u.Bio</p>
-                <br />
-                <h6>Skills:</h6>
-                <p class="card-text">@u.Skills</p>
+                <form method="post" action="SubmitEdit">
+                    <div class="form-group">
+                        <label for="userID">User ID</label>
+                        <input type="text" class="form-control" name="userID"  id="userID" placeholder="Enter userID" value="@u.UserID" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email</label>
+                        <input type="email" class="form-control" name="userEmail" id="userEmail" aria-describedby="emailHelp" placeholder="Enter email" value="@u.Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="userPassword">Password</label>
+                        <input type="password" class="form-control" name="userPassword" id="userPassword" placeholder="Enter password" value="@u.Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="userName">Name</label>
+                        <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter name" value="@u.Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="userPhone">Phone</label>
+                        <input type="tel" class="form-control" name="userPhone" id="userPhone" placeholder="Enter phone" value="@u.Phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="userAddressID">Address ID</label>
+                        <input type="text" class="form-control" name="userAddressID" id="userAddressID" placeholder="Enter AddressID" value="@u.AddressID">
+                    </div>
+                    <div class="form-group">
+                        <label for="userDOB">D.O.B</label>
+                        <input type="text" class="form-control" name="userDOB" id="userDOB" placeholder="Enter DOB" value='@u.GetDateOfBirth()'>
+                    </div>
+                    <div class="form-group">
+                        <label for="userGender">Gender</label>
+                        <input type="text" class="form-control" name="userGender" id="userGender" placeholder="Enter gender" value="@u.Gender">
+                    </div>
+                    <div class="form-group">
+                        <label for="userWorkLocation">Work Location</label>
+                        <input type="text" class="form-control" name="userWorkLocation" id="userWorkLocation" placeholder="Enter work location" value="@u.WorkLocation">
+                    </div>
+                    <div class="form-group">
+                        <label for="userBio">Bio</label>
+                        <input type="text" class="form-control" name="userBio" id="userBio" placeholder="Enter bio" value="@u.Bio">
+                    </div>
+                    <div class="form-group">
+                        <label for="userSkills">Skills</label>
+                        <input type="text" class="form-control" name="userSkills" id="userSkills" placeholder="Enter skills" value="@u.Skills">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input @IsUserAdmin class="form-check-input" type="checkbox" value="" id="makeAdmin" name="makeAdmin">
+                            <label class="form-check-label" for="makeAdmin">
+                                Make User Administrator
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning pull-left">Save Changes</button>
+                </form>
             </div>
-        </div>
+            </div>
         count = count + 1;
     }
 

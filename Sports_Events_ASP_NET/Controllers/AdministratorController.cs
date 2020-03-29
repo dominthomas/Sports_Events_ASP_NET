@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sports_Events_ASP_NET.Models;
@@ -9,13 +10,28 @@ namespace Sports_Events_ASP_NET.Controllers
 {
     public class AdministratorController : Controller
     {
+        private IAddressRepository addrRepository;
+
+        private IEventRepository eventRepository;
+
+        private IUserRepository userRepository;
+
+        private IAdministratorRepository administratorRepositroy;
+
         private IRepository repository;
 
         private string loginID = "loginID";
 
         private string err = "err";
 
-        public AdministratorController(IRepository repo) => repository = repo;
+        public AdministratorController(IRepository repo, IAddressRepository addr, IEventRepository ev, IUserRepository us, IAdministratorRepository admin)
+        {
+            this.repository = repo;
+            this.addrRepository = addr;
+            this.eventRepository = ev;
+            this.userRepository = us;
+            this.administratorRepositroy = admin;
+        }
 
         public ViewResult Administrator(string inputUserEmail, string inputPassword)
         {
@@ -29,7 +45,7 @@ namespace Sports_Events_ASP_NET.Controllers
 
             if (sessionVal != null && !sessionVal.Equals(err))
             {
-                return View(getAllAdminUserInfo());
+                return View(getAllUserInfo());
             }
 
             if(sessionVal != null && sessionVal.Equals(err))
@@ -42,24 +58,53 @@ namespace Sports_Events_ASP_NET.Controllers
                 return View("Login");
             }
 
-            return View(getAllAdminUserInfo());
+            return View(getAllUserInfo());
         }
 
-        public ViewResult logout()
+        public ViewResult Logout()
         {
             HttpContext.Session.Remove(loginID);
-            return View("Login");
+            return View();
         }
 
-        private IQueryable<User> getAllAdminUserInfo()
+        public ViewResult SubmitEdit(int userID, string userEmail, string userPassword, string userName, string userPhone, int userAddressID, string userDOB, string userGender,
+            string userWorkLocation, string userBio, string userSkills, Boolean makeAdmin)
+        {
+            User user = new User();
+            user.UserID = userID;
+            user.Email = userEmail;
+            user.Password = userPassword;
+            user.Name = userName;
+            user.Phone = userPhone;
+            user.AddressID = userAddressID;
+            user.DateOfBirth = getUnixDate(userDOB);
+            user.Gender = userGender;
+            user.WorkLocation = userWorkLocation;
+            user.Bio = userBio;
+            user.Skills = userSkills;
+
+            userRepository.Update(user);
+            return View("Administrator", getAllUserInfo());
+        }
+
+        private IQueryable<User> getAllUserInfo()
         {
             List<int> AdminIDs = getAdminIDs();
 
             IQueryable<User> AllUsers = repository.Users;
 
-            IQueryable<User> AdminUsers = AllUsers.Where(user => AdminIDs.Contains(user.UserID));
-
-            return AdminUsers;
+            foreach (User user in AllUsers)
+            {
+                if(AdminIDs.Contains(user.UserID))
+                {
+                    user.SetUserAdmin(true);
+                }
+                else
+                {
+                    user.SetUserAdmin(false);
+                }
+            }
+            return AllUsers;
         }
 
         private void validate(string userEmail, string userPassword)
@@ -89,6 +134,23 @@ namespace Sports_Events_ASP_NET.Controllers
         private List<int> getAdminIDs()
         {
             return repository.Administrators.Select(user => user.UserID).ToList();
+        }
+
+        private int getUnixDate(string date)
+        {
+            date = date.Trim();
+
+            Match m = Regex.Match(date, @"(\d*)\/(\d*)\/(\d*)");
+
+            int year = Int32.Parse(m.Groups[1].ToString());
+            int month = Int32.Parse(m.Groups[2].ToString());
+            int day = Int32.Parse(m.Groups[3].ToString());
+
+            DateTime datetime = new DateTime(year, month, day, 0, 0, 0, DateTimeKind.Utc);
+            var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            Int32 unixTimestamp = (Int32)(datetime.ToUniversalTime() - epoch).TotalSeconds;
+
+            return unixTimestamp;
         }
     }
 }

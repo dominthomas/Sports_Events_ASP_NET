@@ -12,7 +12,7 @@ namespace Sports_Events_ASP_NET.Models
 
         public string Name { get; set; }
 
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         public string Email { get; set; }
 
@@ -27,6 +27,8 @@ namespace Sports_Events_ASP_NET.Models
         public string Bio { get; set; }
 
         public string Skills { get; set; }
+
+        private Boolean IsUserAdmin { get; set; }
 
         private readonly string Pattern = @"(\w*) (\w*)";
 
@@ -50,6 +52,22 @@ namespace Sports_Events_ASP_NET.Models
             }
 
             return ReturnStr;
+        }
+
+        public void SetUserAdmin(Boolean val)
+        {
+            this.IsUserAdmin = val;
+        }
+
+        public Boolean GetUserAdmin()
+        {
+            return this.IsUserAdmin;
+        }
+
+        public string GetDateOfBirth()
+        {
+            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            return dtDateTime.AddSeconds(this.DateOfBirth).ToString("yyyy/MM/dd");
         }
     }
 }
