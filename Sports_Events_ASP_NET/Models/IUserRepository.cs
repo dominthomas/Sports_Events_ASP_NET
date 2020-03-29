@@ -6,5 +6,6 @@ namespace Sports_Events_ASP_NET.Models
         User Add(User user);
         User Update(User user);
         User Delete(int userID);
+        User GetUser(int userID);
     }
 }

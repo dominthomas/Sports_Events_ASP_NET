@@ -45,7 +45,7 @@ namespace Sports_Events_ASP_NET.Controllers
 
             if (sessionVal != null && !sessionVal.Equals(err))
             {
-                return View(getAllUserInfo());
+                return View(repository);
             }
 
             if(sessionVal != null && sessionVal.Equals(err))
@@ -58,7 +58,7 @@ namespace Sports_Events_ASP_NET.Controllers
                 return View("Login");
             }
 
-            return View(getAllUserInfo());
+            return View(repository);
         }
 
         public ViewResult Logout()
@@ -67,44 +67,121 @@ namespace Sports_Events_ASP_NET.Controllers
             return View();
         }
 
-        public ViewResult SubmitEdit(int userID, string userEmail, string userPassword, string userName, string userPhone, int userAddressID, string userDOB, string userGender,
-            string userWorkLocation, string userBio, string userSkills, Boolean makeAdmin)
+        public ViewResult SubmitEdit(string submitButton, int userID, string userEmail, string userPassword, string userName, string userPhone, string userDOB, string userGender,
+            string userWorkLocation, string userBio, string userSkills, int makeAdmin, int userAddressID, string userAddrFirstLine, string userAddrTown,
+            string userAddrPostCode, string userAddrCountry)
         {
-            User user = new User();
-            user.UserID = userID;
-            user.Email = userEmail;
-            user.Password = userPassword;
-            user.Name = userName;
-            user.Phone = userPhone;
-            user.AddressID = userAddressID;
-            user.DateOfBirth = getUnixDate(userDOB);
-            user.Gender = userGender;
-            user.WorkLocation = userWorkLocation;
-            user.Bio = userBio;
-            user.Skills = userSkills;
+            if(submitButton != null && submitButton.Trim().Equals("deleteUser"))
+            {
+                return DeleteUser(userID);
+            }
+
+            User user = new User
+            {
+                UserID = userID,
+                Email = userEmail,
+                Password = userPassword,
+                Name = userName,
+                Phone = userPhone,
+                AddressID = userAddressID,
+                DateOfBirth = getUnixDate(userDOB),
+                Gender = userGender,
+                WorkLocation = userWorkLocation,
+                Bio = userBio,
+                Skills = userSkills
+            };
 
             userRepository.Update(user);
-            return View("Administrator", getAllUserInfo());
+
+            updateUserAddress(userAddressID, userAddrFirstLine, userAddrTown, userAddrPostCode, userAddrCountry);
+
+            addPrivileges(userID, makeAdmin);
+
+            return View("Administrator", repository);
         }
 
-        private IQueryable<User> getAllUserInfo()
+        public ViewResult AddNewUser(string addUserEmail, string addUserPassword, string addUserName, string addUserPhone, string addUserDOB, string addUserGender,
+            string addUserWorkLocation, string addUserBio, string addUserSkills, int addMakeAdmin, string addUserAddrFirstLine, string addUserAddrTown,
+            string addUserAddrPostCode, string addUserAddrCountry)
+        {
+            Address addr = addUserAddress(addUserAddrFirstLine, addUserAddrTown, addUserAddrPostCode, addUserAddrCountry);
+
+            User user = new User
+            {
+                Email = addUserEmail,
+                Password = addUserPassword,
+                Name = addUserName,
+                Phone = addUserPhone,
+                AddressID = addr.AddressID,
+                DateOfBirth = getUnixDate(addUserDOB),
+                Gender = addUserGender,
+                WorkLocation = addUserWorkLocation,
+                Bio = addUserBio,
+                Skills = addUserSkills
+            };
+
+            User usr = userRepository.Add(user);
+            addPrivileges(usr.UserID, addMakeAdmin);
+            return View("Administrator", repository);
+        }
+
+        private ViewResult DeleteUser(int deleteUserID)
+        {
+            User usr = userRepository.GetUser(deleteUserID);
+            System.Diagnostics.Debug.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+            System.Diagnostics.Debug.WriteLine(deleteUserID);
+            userRepository.Delete(deleteUserID);
+            addrRepository.Delete(usr.AddressID);
+
+            return View("Administrator", repository);
+        }
+
+        private void addPrivileges(int userID, int priveleges)
         {
             List<int> AdminIDs = getAdminIDs();
-
-            IQueryable<User> AllUsers = repository.Users;
-
-            foreach (User user in AllUsers)
+            if (priveleges == 2)
             {
-                if(AdminIDs.Contains(user.UserID))
+                if (!AdminIDs.Contains(userID))
                 {
-                    user.SetUserAdmin(true);
-                }
-                else
-                {
-                    user.SetUserAdmin(false);
+                    Administrator administrator = new Administrator();
+                    administrator.UserID = userID;
+                    administratorRepositroy.Add(administrator);
                 }
             }
-            return AllUsers;
+            else if (priveleges == 1)
+            {
+                if (AdminIDs.Contains(userID))
+                {
+                    administratorRepositroy.Delete(userID);
+                }
+            }
+        }
+
+        private void updateUserAddress(int id, string firstLine, string town, string postcode, string country)
+        {
+            Address addr = new Address
+            {
+                AddressID = id,
+                FirstLine = firstLine,
+                Town = town,
+                PostCode = postcode,
+                Country = country
+            };
+
+            addrRepository.Update(addr);
+        }
+
+        private Address addUserAddress(string fl, string t, string pc, string c)
+        {
+            Address addr = new Address
+            {
+                FirstLine = fl,
+                Town = t,
+                PostCode = pc,
+                Country = c
+            };
+
+            return addrRepository.Add(addr);
         }
 
         private void validate(string userEmail, string userPassword)

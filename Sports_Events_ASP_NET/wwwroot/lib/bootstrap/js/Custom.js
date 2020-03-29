@@ -10,7 +10,3 @@ function showPass() {
         x.type = "password";
     }
 }
-
-function getDateFromUnix(unixTimestamp) {
-    return new Date(unixTimestamp * 1000);
-}

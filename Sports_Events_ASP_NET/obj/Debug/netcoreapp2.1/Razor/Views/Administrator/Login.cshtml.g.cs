@@ -48,7 +48,7 @@ using Sports_Events_ASP_NET.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(17, 1674, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d1906732a54c4091a95dda0723e714b2", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0e6e3c3d6cec4ef1b6fcf694ddcfc617", async() => {
                 BeginContext(23, 218, true);
                 WriteLiteral("\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n            <div class=\"col-sm-9 col-md-7 col-lg-5 mx-auto\">\r\n                <div class=\"card card-signin my-5\">\r\n                    <div class=\"card-body\">\r\n");
                 EndContext();

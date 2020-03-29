@@ -1,82 +1,233 @@
-﻿<div class="container">
-    <div class="row">
-        <div class="col-sm text-left">
-            <button type="button" class="btn btn-success pull-left" onclick="location.href='@Url.Action("AddUser", "Administrator")'">Add User</button>
+﻿<div class="text-right">
+    <button type="button" class="btn btn-danger pull-right" onclick="location.href='@Url.Action("Logout", "Administrator")'">Log out</button>
+</div>
+
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-users-tab" data-toggle="tab" href="#nav-users" role="tab" aria-controls="nav-users" aria-selected="true">Users</a>
+        <a class="nav-item nav-link" id="nav-events-tab" data-toggle="tab" href="#nav-events" role="tab" aria-controls="nav-events" aria-selected="false">Events</a>
+    </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
+        <br />
+        <div class="text-left">
+            <button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#addUserModal">Add User</button>
         </div>
-        <div class="col-sm text-right">
-            <button type="button" class="btn btn-danger pull-right" onclick="location.href='@Url.Action("Logout", "Administrator")'">Log out</button>
+        <div class="modal fade" id="addUserModal" tabindex="-1" role="form" aria-labelledby="addUserModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="AddNewUser">
+                            <div class="form-group">
+                                <label for="addUserEmail">Email</label>
+                                <input type="email" class="form-control" name="addUserEmail" id="addUserEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="addUserPassword">Password</label>
+                                <input type="password" class="form-control" name="addUserPassword" id="addUserPassword" placeholder="Enter password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="addUserName">Name</label>
+                                <input type="text" class="form-control" name="addUserName" id="addUserName" placeholder="Enter name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="addUserPhone">Phone</label>
+                                <input type="tel" class="form-control" name="addUserPhone" id="addUserPhone" placeholder="Enter phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="addUserDOB">D.O.B</label>
+                                <input type="text" class="form-control" name="addUserDOB" id="addUserDOB" placeholder="Enter DOB" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="addUserGender">Gender</label>
+                                <input type="text" class="form-control" name="addUserGender" id="addUserGender" placeholder="Enter gender" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="addUserWorkLocation">Work Location</label>
+                                <input type="text" class="form-control" name="addUserWorkLocation" id="addUserWorkLocation" placeholder="Enter work location" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="addUserBio">Bio</label>
+                                <input type="text" class="form-control" name="addUserBio" id="addUserBio" placeholder="Enter bio" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="addUserSkills">Skills</label>
+                                <input type="text" class="form-control" name="addUserSkills" id="addUserSkills" placeholder="Enter skills" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="addUserAddrFirstLine">First Line</label>
+                                <input type="text" class="form-control" name="addUserAddrFirstLine" id="addUserAddrFirstLine" placeholder="Enter First Line of Address" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="addUserAddrTown">Town</label>
+                                <input type="text" class="form-control" name="addUserAddrTown" id="addUserAddrTown" placeholder="Enter Town" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="addUserAddrPostCode">PostCode</label>
+                                <input type="text" class="form-control" name="addUserAddrPostCode" id="addUserAddrPostCode" placeholder="Enter PostCode" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="addUserAddrCountry">Country</label>
+                                <input type="text" class="form-control" name="addUserAddrCountry" id="addUserAddrCountry" placeholder="Enter Country" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-check-label" for="addMakeAdmin">User Privileges</label>
+                                <select class="form-control" id="addMakeAdmin" name="addMakeAdmin">
+                                    <option value="1" selected>Regular</option>
+                                    <option value="2">Administrator</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary pull-left">Add User</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="card-group">
+
+            @model IRepository
+            @{
+                int count = 0;
+                IQueryable<Address> Addresses = Model.Addresses;
+                Address address;
+                List<int> AdminIDs = Model.Administrators.Select(user => user.UserID).ToList();
+
+                foreach (User user in Model.Users)
+                {
+                    if (AdminIDs.Contains(user.UserID))
+                    {
+                        user.SetUserAdmin(true);
+                    }
+                    else
+                    {
+                        user.SetUserAdmin(false);
+                    }
+                }
+            }
+            @foreach (var u in Model.Users)
+            {
+                address = Addresses.Where(addr => u.AddressID == addr.AddressID).Single();
+                string IsAdminSelected = u.GetUserAdmin() ? "selected" : "";
+
+                    <img class="card-img-top" id="@count" src="/images/users/@u.getProfileImageString()" onerror="standby(@count)">
+                    <div class="card-body">
+                        <form method="post" action="SubmitEdit">
+                            <div class="form-group">
+                                <label for="userID">User ID</label>
+                                <input type="text" class="form-control" name="userID" id="userID" placeholder="Enter userID" value="@u.UserID" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="userEmail">Email</label>
+                                <input type="email" class="form-control" name="userEmail" id="userEmail" aria-describedby="emailHelp" placeholder="Enter email" value="@u.Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userPassword">Password</label>
+                                <input type="password" class="form-control" name="userPassword" id="userPassword" placeholder="Enter password" value="@u.Password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userName">Name</label>
+                                <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter name" value="@u.Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userPhone">Phone</label>
+                                <input type="tel" class="form-control" name="userPhone" id="userPhone" placeholder="Enter phone" value="@u.Phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userDOB">D.O.B</label>
+                                <input type="text" class="form-control" name="userDOB" id="userDOB" placeholder="Enter DOB" value='@u.GetDateOfBirth()' required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userGender">Gender</label>
+                                <input type="text" class="form-control" name="userGender" id="userGender" placeholder="Enter gender" value="@u.Gender" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userWorkLocation">Work Location</label>
+                                <input type="text" class="form-control" name="userWorkLocation" id="userWorkLocation" placeholder="Enter work location" value="@u.WorkLocation" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userBio">Bio</label>
+                                <input type="text" class="form-control" name="userBio" id="userBio" placeholder="Enter bio" value="@u.Bio" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userSkills">Skills</label>
+                                <input type="text" class="form-control" name="userSkills" id="userSkills" placeholder="Enter skills" value="@u.Skills" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userAddressID">Address ID</label>
+                                <input type="text" class="form-control" name="userAddressID" id="userAddressID" placeholder="Enter AddressID" value="@u.AddressID" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="userAddrFirstLine">First Line</label>
+                                <input type="text" class="form-control" name="userAddrFirstLine" id="userAddrFirstLine" placeholder="Enter First Line of Address" value="@address.FirstLine" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userAddrTown">Town</label>
+                                <input type="text" class="form-control" name="userAddrTown" id="userAddrTown" placeholder="Enter Town" value="@address.Town" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userAddrPostCode">PostCode</label>
+                                <input type="text" class="form-control" name="userAddrPostCode" id="userAddrPostCode" placeholder="Enter PostCode" value="@address.PostCode" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userAddrCountry">Country</label>
+                                <input type="text" class="form-control" name="userAddrCountry" id="userAddrCountry" placeholder="Enter Country" value="@address.Country" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-check-label" for="makeAdmin">User Privileges</label>
+                                <select class="form-control" id="makeAdmin" name="makeAdmin">
+                                    <option value="1">Regular</option>
+                                    <option value="2" @IsAdminSelected>Administrator</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-warning pull-left" name="submitButton" value="editUser">Save Changes</button>
+                            <button type="submit" class="btn btn-danger pull-right" name="submitButton" value="deleteUser">Delete User</button>
+                        </form>
+                    </div>
+                count = count + 1;
+            }
+
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
+        <div class="card-group">
+            @foreach (Event e in Model.Events)
+            {
+                address = Addresses.Where(addr => e.AddressID == addr.AddressID).Single();
+                <img class="card-img-top" id="@count" src="/images/categories/@e.getCategoryImageString()"
+                     onerror="standby(@count)" alt="Picture of a @e.getCategoryImageString() event.">
+                <div class="card-body">
+                    <form method="post" action="SubmitEventEdit">
+                        <div class="form-group">
+                            <label for="eventID">Event ID</label>
+                            <input type="text" class="form-control" name="eventID" id="eventID" value="@e.EventID" readonly>
+                        </div>
+                        <h5 class="card-title">@e.Title</h5>
+                        <h6>Price</h6>
+                        <p class="card-text">£@e.Price</p>
+                        <h6>Description</h6>
+                        <p class="card-text">@e.Description</p>
+                        <h6>Location</h6>
+                        <p class="card-text">@address.FirstLine <br />@address.Town <br /> @address.PostCode <br /> @address.Country</p>
+                        <br />
+                    </form>
+                </div>
+                <br />
+                count = count + 1;
+            }
         </div>
     </div>
 </div>
 
-<div class="card-group">
-
-    @model IEnumerable<User>
-    @{ int count = 0;}
-    @foreach (var u in Model)
-    {
-        string IsUserAdmin = u.GetUserAdmin() ? "checked" : "";
-        <div class="card">
-            <img class="card-img-top" id="@count" src="/images/users/@u.getProfileImageString()" onerror="standby(@count)">
-            <div class="card-body">
-                <form method="post" action="SubmitEdit">
-                    <div class="form-group">
-                        <label for="userID">User ID</label>
-                        <input type="text" class="form-control" name="userID"  id="userID" placeholder="Enter userID" value="@u.UserID" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="userEmail">Email</label>
-                        <input type="email" class="form-control" name="userEmail" id="userEmail" aria-describedby="emailHelp" placeholder="Enter email" value="@u.Email">
-                    </div>
-                    <div class="form-group">
-                        <label for="userPassword">Password</label>
-                        <input type="password" class="form-control" name="userPassword" id="userPassword" placeholder="Enter password" value="@u.Password">
-                    </div>
-                    <div class="form-group">
-                        <label for="userName">Name</label>
-                        <input type="text" class="form-control" name="userName" id="userName" placeholder="Enter name" value="@u.Name">
-                    </div>
-                    <div class="form-group">
-                        <label for="userPhone">Phone</label>
-                        <input type="tel" class="form-control" name="userPhone" id="userPhone" placeholder="Enter phone" value="@u.Phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="userAddressID">Address ID</label>
-                        <input type="text" class="form-control" name="userAddressID" id="userAddressID" placeholder="Enter AddressID" value="@u.AddressID">
-                    </div>
-                    <div class="form-group">
-                        <label for="userDOB">D.O.B</label>
-                        <input type="text" class="form-control" name="userDOB" id="userDOB" placeholder="Enter DOB" value='@u.GetDateOfBirth()'>
-                    </div>
-                    <div class="form-group">
-                        <label for="userGender">Gender</label>
-                        <input type="text" class="form-control" name="userGender" id="userGender" placeholder="Enter gender" value="@u.Gender">
-                    </div>
-                    <div class="form-group">
-                        <label for="userWorkLocation">Work Location</label>
-                        <input type="text" class="form-control" name="userWorkLocation" id="userWorkLocation" placeholder="Enter work location" value="@u.WorkLocation">
-                    </div>
-                    <div class="form-group">
-                        <label for="userBio">Bio</label>
-                        <input type="text" class="form-control" name="userBio" id="userBio" placeholder="Enter bio" value="@u.Bio">
-                    </div>
-                    <div class="form-group">
-                        <label for="userSkills">Skills</label>
-                        <input type="text" class="form-control" name="userSkills" id="userSkills" placeholder="Enter skills" value="@u.Skills">
-                    </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input @IsUserAdmin class="form-check-input" type="checkbox" value="" id="makeAdmin" name="makeAdmin">
-                            <label class="form-check-label" for="makeAdmin">
-                                Make User Administrator
-                            </label>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-warning pull-left">Save Changes</button>
-                </form>
-            </div>
-            </div>
-        count = count + 1;
-    }
-
-</div>
