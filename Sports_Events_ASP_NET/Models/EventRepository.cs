@@ -35,5 +35,10 @@ namespace Sports_Events_ASP_NET.Models
             context.SaveChanges();
             return evChanges;
         }
+
+        public Event GetEvent(int id)
+        {
+            return context.Events.Find(id);
+        }
     }
 }

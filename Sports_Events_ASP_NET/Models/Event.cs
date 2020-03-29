@@ -15,7 +15,7 @@ namespace Sports_Events_ASP_NET.Models
 
         public string Category { get; set; }
 
-        public int Price { get; set; }
+        public double Price { get; set; }
 
         public string Description { get; set; }
 

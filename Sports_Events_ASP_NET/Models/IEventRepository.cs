@@ -6,5 +6,6 @@ namespace Sports_Events_ASP_NET.Models
         Event Add(Event ev);
         Event Update(Event ev);
         Event Delete(int id);
+        Event GetEvent(int id);
     }
 }

@@ -37,7 +37,7 @@ namespace Sports_Events_ASP_NET.Controllers
         {
             string sessionVal = HttpContext.Session.GetString(loginID);
 
-            if(inputUserEmail != null && inputPassword != null)
+            if (inputUserEmail != null && inputPassword != null)
             {
                 validate(inputUserEmail, inputPassword);
                 sessionVal = HttpContext.Session.GetString(loginID);
@@ -48,7 +48,7 @@ namespace Sports_Events_ASP_NET.Controllers
                 return View(repository);
             }
 
-            if(sessionVal != null && sessionVal.Equals(err))
+            if (sessionVal != null && sessionVal.Equals(err))
             {
                 return View("Login", err);
             }
@@ -71,7 +71,7 @@ namespace Sports_Events_ASP_NET.Controllers
             string userWorkLocation, string userBio, string userSkills, int makeAdmin, int userAddressID, string userAddrFirstLine, string userAddrTown,
             string userAddrPostCode, string userAddrCountry)
         {
-            if(submitButton != null && submitButton.Trim().Equals("deleteUser"))
+            if (submitButton != null && submitButton.Trim().Equals("deleteUser"))
             {
                 return DeleteUser(userID);
             }
@@ -93,10 +93,33 @@ namespace Sports_Events_ASP_NET.Controllers
 
             userRepository.Update(user);
 
-            updateUserAddress(userAddressID, userAddrFirstLine, userAddrTown, userAddrPostCode, userAddrCountry);
+            updateAddress(userAddressID, userAddrFirstLine, userAddrTown, userAddrPostCode, userAddrCountry);
 
             addPrivileges(userID, makeAdmin);
 
+            return View("Administrator", repository);
+        }
+
+        public ViewResult SubmitEventEdit(int eventID, string eventTitle, string eventCategory, double eventPrice, string eventDescription, string eventAddressFistLine,
+            string eventAddressTown, string eventAddressPostCode, string eventAddressCountry, int eventAddressID, string submitButton)
+        {
+            if (submitButton != null && submitButton.Trim().Equals("deleteEvent"))
+            {
+                return DeleteEvent(eventID);
+            }
+
+            Event ev = new Event
+            {
+                EventID = eventID,
+                Title = eventTitle,
+                Category = eventCategory,
+                Price = eventPrice,
+                Description = eventDescription,
+                AddressID = eventAddressID
+            };
+
+            eventRepository.Update(ev);
+            updateAddress(eventAddressID, eventAddressFistLine, eventAddressTown, eventAddressPostCode, eventAddressCountry);
             return View("Administrator", repository);
         }
 
@@ -104,7 +127,7 @@ namespace Sports_Events_ASP_NET.Controllers
             string addUserWorkLocation, string addUserBio, string addUserSkills, int addMakeAdmin, string addUserAddrFirstLine, string addUserAddrTown,
             string addUserAddrPostCode, string addUserAddrCountry)
         {
-            Address addr = addUserAddress(addUserAddrFirstLine, addUserAddrTown, addUserAddrPostCode, addUserAddrCountry);
+            Address addr = addAddress(addUserAddrFirstLine, addUserAddrTown, addUserAddrPostCode, addUserAddrCountry);
 
             User user = new User
             {
@@ -125,6 +148,23 @@ namespace Sports_Events_ASP_NET.Controllers
             return View("Administrator", repository);
         }
 
+        public ViewResult AddNewEvent(string eventTitle, string eventCategory, double eventPrice, string eventDescription, string eventAddressFistLine,
+            string eventAddressTown, string eventAddressPostCode, string eventAddressCountry)
+        {
+            Address addr = addAddress(eventAddressFistLine, eventAddressTown, eventAddressPostCode, eventAddressCountry);
+            Event ev = new Event
+            {
+                Title = eventTitle,
+                Category = eventCategory,
+                Price = eventPrice,
+                Description = eventDescription,
+                AddressID = addr.AddressID
+            };
+
+            eventRepository.Add(ev);
+            return View("Administrator", repository);
+        }
+
         private ViewResult DeleteUser(int deleteUserID)
         {
             User usr = userRepository.GetUser(deleteUserID);
@@ -134,6 +174,16 @@ namespace Sports_Events_ASP_NET.Controllers
             addrRepository.Delete(usr.AddressID);
 
             return View("Administrator", repository);
+        }
+
+        private ViewResult DeleteEvent(int eventID)
+        {
+            Event ev = eventRepository.GetEvent(eventID);
+            eventRepository.Delete(eventID);
+            addrRepository.Delete(ev.AddressID);
+
+            return View("Administrator", repository);
+
         }
 
         private void addPrivileges(int userID, int priveleges)
@@ -157,7 +207,7 @@ namespace Sports_Events_ASP_NET.Controllers
             }
         }
 
-        private void updateUserAddress(int id, string firstLine, string town, string postcode, string country)
+        private void updateAddress(int id, string firstLine, string town, string postcode, string country)
         {
             Address addr = new Address
             {
@@ -171,7 +221,7 @@ namespace Sports_Events_ASP_NET.Controllers
             addrRepository.Update(addr);
         }
 
-        private Address addUserAddress(string fl, string t, string pc, string c)
+        private Address addAddress(string fl, string t, string pc, string c)
         {
             Address addr = new Address
             {

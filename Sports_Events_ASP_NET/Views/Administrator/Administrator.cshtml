@@ -13,13 +13,13 @@
     <div class="tab-pane fade show active" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
         <br />
         <div class="text-left">
-            <button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#addUserModal">Add User</button>
+            <button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#addUserModal">Add New User</button>
         </div>
         <div class="modal fade" id="addUserModal" tabindex="-1" role="form" aria-labelledby="addUserModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+                        <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -202,6 +202,64 @@
     </div>
 
     <div class="tab-pane fade" id="nav-events" role="tabpanel" aria-labelledby="nav-events-tab">
+        <br />
+        <div class="text-left">
+            <button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#addEventModal">Add New Event</button>
+        </div>
+        <br />
+        <div class="modal fade" id="addEventModal" tabindex="-1" role="form" aria-labelledby="addEventModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addEventModalLabel">Add New Event</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="AddNewEvent">
+                            <div class="form-group">
+                                <label for="eventTitle">Event Title</label>
+                                <input type="text" class="form-control" name="eventTitle" id="eventTitle" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventCategory">Category</label>
+                                <input type="text" class="form-control" name="eventCategory" id="eventCategory" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventPrice">Price</label>
+                                <input type="text" class="form-control" name="eventPrice" id="eventPrice" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventDescription">Description</label>
+                                <input type="text" class="form-control" name="eventDescription" id="eventDescription" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventAddressFistLine">First Line of Address</label>
+                                <input type="text" class="form-control" name="eventAddressFistLine" id="eventAddressFistLine" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventAddressTown">Town</label>
+                                <input type="text" class="form-control" name="eventAddressTown" id="eventAddressTown" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventAddressPostCode">PostCode</label>
+                                <input type="text" class="form-control" name="eventAddressPostCode" id="eventAddressPostCode" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventAddressCountry">Country</label>
+                                <input type="text" class="form-control" name="eventAddressCountry" id="eventAddressCountry" required>
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary pull-left">Add New Event</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="card-group">
             @foreach (Event e in Model.Events)
             {
@@ -214,14 +272,45 @@
                             <label for="eventID">Event ID</label>
                             <input type="text" class="form-control" name="eventID" id="eventID" value="@e.EventID" readonly>
                         </div>
-                        <h5 class="card-title">@e.Title</h5>
-                        <h6>Price</h6>
-                        <p class="card-text">£@e.Price</p>
-                        <h6>Description</h6>
-                        <p class="card-text">@e.Description</p>
-                        <h6>Location</h6>
-                        <p class="card-text">@address.FirstLine <br />@address.Town <br /> @address.PostCode <br /> @address.Country</p>
+                        <div class="form-group">
+                            <label for="eventTitle">Event Title</label>
+                            <input type="text" class="form-control" name="eventTitle" id="eventTitle" value="@e.Title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventCategory">Category</label>
+                            <input type="text" class="form-control" name="eventCategory" id="eventCategory" value="@e.Category" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventPrice">Price</label>
+                            <input type="text" class="form-control" name="eventPrice" id="eventPrice" value="@e.Price" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventDescription">Description</label>
+                            <input type="text" class="form-control" name="eventDescription" id="eventDescription" value="@e.Description" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventAddressID">Address ID</label>
+                            <input type="text" class="form-control" name="eventAddressID" id="eventAddressID" value="@e.AddressID" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventAddressFistLine">First Line</label>
+                            <input type="text" class="form-control" name="eventAddressFistLine" id="eventAddressFistLine" value="@address.FirstLine" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventAddressTown">Town</label>
+                            <input type="text" class="form-control" name="eventAddressTown" id="eventAddressTown" value="@address.Town" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventAddressPostCode">PostCode</label>
+                            <input type="text" class="form-control" name="eventAddressPostCode" id="eventAddressPostCode" value="@address.PostCode" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventAddressCountry">Country</label>
+                            <input type="text" class="form-control" name="eventAddressCountry" id="eventAddressCountry" value="@address.Country" required>
+                        </div>
                         <br />
+                        <button type="submit" class="btn btn-warning pull-left" name="submitButton" value="editEvent">Save Changes</button>
+                        <button type="submit" class="btn btn-danger pull-right" name="submitButton" value="deleteEvent">Delete Event</button>
                     </form>
                 </div>
                 <br />
@@ -229,5 +318,5 @@
             }
         </div>
     </div>
-</div>
+    </div>
 
